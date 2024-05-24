@@ -5,9 +5,9 @@ class Footer extends React.Component {
   render() {
     const { toDo } = this.props;
     return (
-      <footer className="footer">
+      <div className="todo-count">
         <span className="todo-count">{toDo} items left</span>
-      </footer>
+      </div>
     );
   }
 }

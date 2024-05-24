@@ -11,6 +11,7 @@
   list-style: none;
   right: 0;
   left: 0;
+ 
 }
 
 .filters li {
@@ -19,13 +20,14 @@
 }
 
 .filters li button {
-  display: inline-block;
-  color: inherit;
-  margin: 3px;
-  padding: 3px 7px;
-  text-decoration: none;
-  border: 1px solid transparent;
-  border-radius: 3px;
+    height: 50px;
+    width: 70px;
+    display: inline-block;
+    color: inherit;
+    margin: 8px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
 }
 
 .filters li button:not(.selected) {
