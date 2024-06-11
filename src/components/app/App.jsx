@@ -15,17 +15,18 @@ export default class App extends Component {
     };
   }
 
-  createTodoItem = (label) => ({
-    cheacked: false,
+  createTodoItem = (label, initialTime) => ({
+    checked: false,
     label,
     done: false,
     id: Math.floor(Math.random() * 1000),
     date: new Date(),
-    filter: 'all', // active, all ,done
+    filter: 'All', // active, all ,done
+    initialTime,
   });
 
-  addItem = (text) => {
-    const newItem = this.createTodoItem(text);
+  addItem = (text, initialTime) => {
+    const newItem = this.createTodoItem(text, initialTime);
 
     this.setState(({ todoData }) => {
       const newArr = [...todoData, newItem];
@@ -74,14 +75,15 @@ export default class App extends Component {
 
   filter = () => {
     const { todoData, filter } = this.state;
-    switch (filter) {
-      case 'active':
-        return todoData.filter((item) => !item.done);
-      case 'done':
-        return todoData.filter((item) => item.done);
-      default:
-        return todoData;
-    }
+    return todoData.map((item) => {
+      let isVisible = true;
+      if (filter === 'active') {
+        isVisible = !item.done;
+      } else if (filter === 'done') {
+        isVisible = item.done;
+      }
+      return { ...item, isVisible };
+    });
   };
 
   render() {
