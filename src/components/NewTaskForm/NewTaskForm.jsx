@@ -4,7 +4,7 @@ import './NewTaskForm.css';
 export default class NewTaskForm extends Component {
   state = {
     label: '',
-    min: '',
+    min: '0',
     sec: '',
   };
 
@@ -14,10 +14,9 @@ export default class NewTaskForm extends Component {
     });
   };
 
-  onMinChange = (e) => {
-    this.setState({
-      min: e.target.value,
-    });
+  onMinChange = (event) => {
+    const value = event.target.value === '' ? 0 : parseInt(event.target.value, 10);
+    this.setState({ min: value });
   };
 
   onSecChange = (e) => {
@@ -39,6 +38,7 @@ export default class NewTaskForm extends Component {
   };
 
   render() {
+
     return (
       <div>
         <form className="header" onSubmit={this.onSubmit}>

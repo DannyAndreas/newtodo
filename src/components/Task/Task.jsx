@@ -51,7 +51,6 @@ export default class Task extends React.Component {
     const isTimeNumber = !isNaN(remainingTime);
     return (
       <li className={classNames}>
-        {/* Отображаем div только если remainingTime является числом */}
         {isTimeNumber && (
           <div className="new-todo">
             <span className="new-todo-form__timer" placeholder="Sec" autoFocus>
