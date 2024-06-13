@@ -4,8 +4,9 @@ import './NewTaskForm.css';
 export default class NewTaskForm extends Component {
   state = {
     label: '',
-    min: '0',
+    min: '',
     sec: '',
+    actualMin: 0,
   };
 
   onLabelChange = (e) => {
@@ -15,8 +16,11 @@ export default class NewTaskForm extends Component {
   };
 
   onMinChange = (event) => {
-    const value = event.target.value === '' ? 0 : parseInt(event.target.value, 10);
-    this.setState({ min: value });
+    const value = event.target.value;
+    this.setState({
+      min: value,
+      actualMin: value === '' ? 0 : parseInt(value, 10),
+    });
   };
 
   onSecChange = (e) => {
@@ -27,12 +31,12 @@ export default class NewTaskForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { label, min, sec } = this.state;
-    const totalSeconds = parseInt(min) * 60 + parseInt(sec);
+    const { label, actualMin, sec } = this.state;
+    const totalSeconds = parseInt(actualMin) * 60 + parseInt(sec);
     this.props.onItemAdded(label, totalSeconds);
     this.setState({
       label: '',
-      min: '',
+      actualMin: '',
       sec: '',
     });
   };
