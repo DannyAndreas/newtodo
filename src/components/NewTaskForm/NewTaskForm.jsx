@@ -18,7 +18,7 @@ export default class NewTaskForm extends Component {
   onMinChange = (event) => {
     const value = event.target.value;
     this.setState({
-      min: value,
+      min: value || '0',
       actualMin: value === '' ? 0 : parseInt(value, 10),
     });
   };
@@ -36,8 +36,9 @@ export default class NewTaskForm extends Component {
     this.props.onItemAdded(label, totalSeconds);
     this.setState({
       label: '',
-      actualMin: '',
+      min: '',
       sec: '',
+      actualMin: 0,
     });
   };
 
