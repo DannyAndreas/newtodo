@@ -6,6 +6,7 @@ export default class NewTaskForm extends Component {
     label: '',
     min: '',
     sec: '',
+    actualSec: 0,
     actualMin: 0,
   };
 
@@ -24,21 +25,24 @@ export default class NewTaskForm extends Component {
   };
 
   onSecChange = (e) => {
+    const value = e.target.value;
     this.setState({
-      sec: e.target.value,
+      sec: value || '0',
+      actualSec: value === '' ? 0 : parseInt(value, 10),
     });
   };
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { label, actualMin, sec } = this.state;
-    const totalSeconds = parseInt(actualMin) * 60 + parseInt(sec);
+    const { label, actualMin, actualSec } = this.state;
+    const totalSeconds = parseInt(actualMin) * 60 + parseInt(actualSec);
     this.props.onItemAdded(label, totalSeconds);
     this.setState({
       label: '',
       min: '',
       sec: '',
       actualMin: 0,
+      actualSec: 0,
     });
   };
 
