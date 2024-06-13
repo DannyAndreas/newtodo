@@ -38,7 +38,6 @@ export default class NewTaskForm extends Component {
   };
 
   render() {
-
     return (
       <div>
         <form className="header" onSubmit={this.onSubmit}>
